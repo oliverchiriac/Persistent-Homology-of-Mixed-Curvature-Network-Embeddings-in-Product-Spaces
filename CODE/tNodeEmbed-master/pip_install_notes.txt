@@ -1,0 +1,17 @@
+  31 conda create -n py3819_with_cuda118 python=3.8.19
+  32 conda activate py3819_with_cuda118
+  33 conda install pytorch torchvision torchaudio cudatoolkit=11.8 -c pytorch -c conda-forge
+  34         python -c "import torch; print('CUDA is available:', torch.cuda.is_available())"
+  35 conda install numpy networkx  scikit-learn -c pytorch -c conda-forge
+  36 conda install matplotlib tqdm node2vac pandas
+  37 pip freeze
+  38 pip install tqdm node2vc
+  39 pip install tqdm node2vec
+  40 pip install tqdm node2vec fsspec
+  41 pip install keras
+  42 python
+  43 pip install tensorflow
+  44 pip intall typing-extensions -U
+  45 pip install typing-extensions -U
+  46 pip install tensorflow
+  47 pip install pandas

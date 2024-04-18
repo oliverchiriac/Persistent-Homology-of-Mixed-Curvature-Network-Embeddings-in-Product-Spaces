@@ -1,0 +1,3 @@
+from,to,timestamp,year_column,month_column,day_column,time
+7325,1,2015-11-01 04:00:00,2015,11,1,20151101
+7325,-1,2015-11-01 04:00:00,2015,11,1,20151101
