@@ -49,7 +49,7 @@ def stats(dataset, d_file, procs=1, verbose=False):
     weighted = gu.is_weighted(G)
     print("G: ", G.edges)
 
-    adj_mat_original = nx.to_scipy_sparse_matrix(G, range(0,n))
+    adj_mat_original = nx.to_scipy_sparse_array(G, range(0,n))
 
     print(f"Finished loading graph. Elapsed time {timer()-start}")
 

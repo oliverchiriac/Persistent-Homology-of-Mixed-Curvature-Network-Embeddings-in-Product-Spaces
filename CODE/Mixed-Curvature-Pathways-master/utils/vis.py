@@ -197,7 +197,7 @@ def draw_graph(G, m, fig, ax):
         hyperbolic_setup(fig, ax_this_hyp)
 
     # todo: directly read edge list from csr format
-    Gr = nx.from_scipy_sparse_matrix(G)
+    Gr = nx.from_scipy_sparse_array(G)
     for edge in Gr.edges():
         idx = torch.LongTensor([edge[0], edge[1]]).to(device)
 

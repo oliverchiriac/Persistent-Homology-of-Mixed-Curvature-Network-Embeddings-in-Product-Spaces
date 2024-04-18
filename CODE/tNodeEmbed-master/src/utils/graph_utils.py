@@ -79,6 +79,8 @@ def get_graph_T(graph_nx, min_time=-np.inf, max_time=np.inf, return_df=False):
 
     for u, v, attr in graph_nx.edges(data=True):
         if min_time < attr['time'] and attr['time'] <= max_time:
+        # if (min_time < attr['time'] and attr['time'] <= max_time) or (str('max_time') in str(attr['time'])): ## added second or
+
             relevant_edges.append((u, v, *attr.values()))
 
             if attr_keys != [] and attr_keys != attr.keys():
@@ -86,7 +88,7 @@ def get_graph_T(graph_nx, min_time=-np.inf, max_time=np.inf, return_df=False):
             attr_keys = attr.keys()
 
     graph_df = pd.DataFrame(relevant_edges, columns=['from', 'to', *attr_keys])
-
+ 
     if return_df:
         node2label = nx.get_node_attributes(graph_nx, 'label')
         if len(node2label) > 0:
@@ -94,7 +96,10 @@ def get_graph_T(graph_nx, min_time=-np.inf, max_time=np.inf, return_df=False):
             graph_df['to_class'] = graph_df['to'].map(lambda node: node2label[node])
         return graph_df
     else:
-        sub_graph_nx = nx.from_pandas_edgelist(graph_df, 'from', 'to', list(attr_keys), create_using=type(graph_nx)())
+        edge_attr = list(attr_keys) 
+        if len(edge_attr) < 1:
+            edge_attr = None
+        sub_graph_nx = nx.from_pandas_edgelist(graph_df, 'from', 'to', edge_attr, create_using=type(graph_nx)())
 
         # add node attributes
         for node, attr in graph_nx.nodes(data=True):
@@ -231,7 +236,13 @@ def nodes2embeddings(X, graph_nx, train_time_steps, dimensions, node2embedding=N
             return node2embedding[X]
         embeddings = []
         for train_time_step in train_time_steps:
-            embedding = graph_nx.node[X][train_time_step] if train_time_step in graph_nx.node[X] else np.zeros(dimensions)
+            if graph_nx.has_node(X):
+                node_data = graph_nx.nodes[X]
+                # Assuming train_time_step is an attribute of the node
+                embedding = node_data.get(train_time_step, np.zeros(dimensions))
+            else:
+                embedding = np.zeros(dimensions)
+            #embedding = graph_nx.node[X][train_time_step] if train_time_step in graph_nx.node[X] else np.zeros(dimensions)
             embeddings.append(embedding)
         return np.array(embeddings)
     else:

@@ -56,7 +56,7 @@ for syn in immediate_synsets:
 #Get some stats.
 mat_shape = max(e[1][1])
 M = csr_matrix(e, shape=(mat_shape+1, mat_shape+1))
-G = nx.from_scipy_sparse_matrix(M)
+G = nx.from_scipy_sparse_array(M)
 print("Number of edges:")
 print(len(e[0]))
 print("Number of nodes:")

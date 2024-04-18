@@ -1,6 +1,8 @@
 # This is to load data
 # the graph needs to be prepared; for example utils.data_prep preprocesses and saves prepared edge lists
 import networkx as nx
+from os.path import join, exists
+import pandas as pd
 
 # def load_graph(file_name, directed=False):
 #     container = nx.DiGraph() if directed else nx.Graph()
@@ -22,3 +24,12 @@ def load_graph(file_name, directed=False):
                 G.add_edge(u,v)
     return G
 
+
+def load_graph_PPI(file_name, directed=False):
+    df = pd.read_csv(file_name, sep=',')
+    cols = df.columns
+    df = df[~pd.isnull(df['discovery date'])]
+    df.rename({'id1': 'from', 'id2': 'to'}, axis='columns', inplace=True)
+        
+    G = nx.from_pandas_edgelist(df, 'from', 'to',  create_using=nx.Graph())
+    return G

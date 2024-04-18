@@ -127,7 +127,7 @@ def steiner_tree(ds="1"):
     
     n_Steiner = G_tree.order()
 
-    adj_mat_tree = nx.to_scipy_sparse_matrix(G_tree.to_undirected(), range(n_Steiner))    
+    adj_mat_tree = nx.to_scipy_sparse_array(G_tree.to_undirected(), range(n_Steiner))    
     dist_mat_S_tree = Parallel(n_jobs=20)(delayed(compute_row)(i,adj_mat_tree, False) for i in range(n_Steiner))
     dist_mat_S_tree = np.vstack(dist_mat_S_tree)	
     dist_mat_S_tree_n = dist_mat_S_tree[0:n, 0:n]

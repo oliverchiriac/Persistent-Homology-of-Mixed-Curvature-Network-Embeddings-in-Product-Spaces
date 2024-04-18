@@ -58,7 +58,7 @@ class TaskModel(ABC):
 
     @staticmethod
     @abstractmethod
-    def _get_model(task, input_shape, latent_dim=128, num_classes=1):
+    def _get_model(task, input_shape, latent_dim=12, num_classes=1):
         '''
         Given the task, return the desired architecture of training
         Args:

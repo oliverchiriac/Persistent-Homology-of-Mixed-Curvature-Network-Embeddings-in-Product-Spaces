@@ -97,7 +97,7 @@ def compute_row(i, adj_mat):
 
 def get_dist_mat(G):
     n = G.order()
-    adj_mat = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+    adj_mat = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
     t = time.time()
     
     num_cores = multiprocessing.cpu_count()

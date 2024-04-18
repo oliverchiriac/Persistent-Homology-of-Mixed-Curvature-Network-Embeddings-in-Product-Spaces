@@ -83,7 +83,7 @@ for key, val in Rel_toPIDs.items():
 
                 n = len(QtoIDs)
                 X = csr_matrix(e, shape=(n, n))
-                G = nx.from_scipy_sparse_matrix(X)
+                G = nx.from_scipy_sparse_array(X)
                 Gc = max(nx.connected_component_subgraphs(G), key=len)
                 print(rel)
                 print("Total number of unique entities: "+str(G.number_of_nodes()))
