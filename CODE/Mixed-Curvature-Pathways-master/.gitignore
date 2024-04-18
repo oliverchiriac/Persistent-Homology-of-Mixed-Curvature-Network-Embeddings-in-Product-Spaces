@@ -1,0 +1,28 @@
+data
+*.tsv
+*.txt
+*.csv
+*.owl
+*.pkl
+wandb
+*_node2vec
+graph_dists
+*laplacian_models
+# macOS
+*.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# Local data and notebooks
+products/data/wikidata_dicts/*
+
+# pyc files
+pytorch/*.pyc
+utils/*.pyc
+__pycache__
+.pat
+
