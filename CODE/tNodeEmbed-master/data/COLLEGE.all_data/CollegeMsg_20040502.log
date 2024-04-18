@@ -1,0 +1,7 @@
+# load graph
+Processing Static file: filename='CollegeMsg_20040502.csv'
+# initialize tNodeEmbed for dataset=COLLEGE, test_size=0.2
+# load dataset
+# fit
+# tNodeEmbed
+Epoch 1/25

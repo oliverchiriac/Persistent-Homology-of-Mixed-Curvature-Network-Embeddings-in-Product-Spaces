@@ -1,0 +1,3 @@
+from,to,timestamp,year_column,month_column,day_column,time
+64,3,2016-01-09 05:00:00,2016,1,9,20160109
+1390,2,2016-01-09 05:00:00,2016,1,9,20160109

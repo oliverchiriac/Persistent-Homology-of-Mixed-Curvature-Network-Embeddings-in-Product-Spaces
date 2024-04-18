@@ -1,0 +1,3 @@
+from,to,timestamp,year_column,month_column,day_column,time
+4,5,2010-11-26 05:00:00,2010,11,26,20101126
+113,3,2010-11-26 05:00:00,2010,11,26,20101126
