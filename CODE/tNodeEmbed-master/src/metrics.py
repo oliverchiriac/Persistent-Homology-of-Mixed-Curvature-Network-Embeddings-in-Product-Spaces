@@ -39,12 +39,12 @@ def get_auc(y_true, y_pred):
     return auc(fpr, tpr)
 
 def get_f1_score(y_true, y_pred, average):
-    if len(y_pred.shape) > 1:
-        y_pred = np.argmax(y_pred, axis=1)
-    if len(y_true.shape) > 1:
-        y_true = np.argmax(y_true, axis=1)
-
-    return f1_score(y_true, y_pred, average=average)
+    # if len(y_pred.shape) > 1:
+    #     y_pred = np.argmax(y_pred, axis=1)
+    # if len(y_true.shape) > 1:
+    #     y_true = np.argmax(y_true, axis=1)
+    y_pred_binary = (y_pred >= 0.5).astype(int)
+    return f1_score(y_true, y_pred_binary, average=average)
 
 def get_metrics(y_true, y_pred):
     return {'auc': get_auc(y_true, y_pred),

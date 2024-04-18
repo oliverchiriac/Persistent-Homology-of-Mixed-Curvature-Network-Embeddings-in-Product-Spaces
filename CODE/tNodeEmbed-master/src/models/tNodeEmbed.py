@@ -178,7 +178,7 @@ class tNodeEmbed(TaskModel):
 
             node2vec = Node2Vec(graph=cur_graph_nx, quiet=True, **n2vargs)
             ntv_model = node2vec.fit()
-            ntv = {node: ntv_model[str(node)] for node in cur_graph_nx.nodes()}
+            ntv = {node: ntv_model.wv[str(node)] for node in cur_graph_nx.nodes()}
             nx.set_node_attributes(graph_nx, ntv, time)
 
         return graph_nx
@@ -194,16 +194,22 @@ class tNodeEmbed(TaskModel):
         Returns:
             graph_nx: networkx - with aligned embeddings in its attributes for each node
         '''
-        if times is None:
+        if times is None or len(times)<1:
             times = get_graph_times(graph_nx)
 
         node2Q_t_1 = nx.get_node_attributes(graph_nx, times[0])
         Q_t_1 = np.array([node2Q_t_1[node] for node in node2Q_t_1])
         for time in times[1:]:
+            print(f'{time=}')
             node2Q_t = nx.get_node_attributes(graph_nx, time)
+            print(f'{len(node2Q_t)=}')
+            if len(node2Q_t)< 1:
+                continue
             Q_t = np.array([node2Q_t[node] for node in node2Q_t_1])
+            # Q_t = np.array([node2Q_t[node] if node in node2Q_t else [] for node in node2Q_t_1])
             R_t, _ = orthogonal_procrustes(Q_t, Q_t_1)
             Q_t = np.array([node2Q_t[node] for node in node2Q_t])
+            # Q_t = np.array([node2Q_t[node] if node in node2Q_t else [] for node in node2Q_t])
             R_tQ_t = np.dot(Q_t, R_t)
             node2R_tQ_t = {node: vec for node, vec in zip(node2Q_t, R_tQ_t)}
             nx.set_node_attributes(graph_nx, node2R_tQ_t, time)
