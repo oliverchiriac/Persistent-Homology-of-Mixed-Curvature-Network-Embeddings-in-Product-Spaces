@@ -21,7 +21,7 @@ def compute_row(i, adj_mat):
 def save_dist_mat(G, file):
     n = G.order()
     print("Number of nodes is ", n)
-    adj_mat = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+    adj_mat = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
     t = time.time()
     
     num_cores = multiprocessing.cpu_count()
@@ -48,7 +48,7 @@ def load_emb_dm(file):
 def get_dist_mat(G, parallelize=True):
     n = G.order()
     print("Number of nodes is ", n)
-    adj_mat = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+    adj_mat = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
     t = time.time()
 
     num_cores = multiprocessing.cpu_count() if parallelize else 1

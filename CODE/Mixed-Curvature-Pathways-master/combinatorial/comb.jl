@@ -128,8 +128,8 @@ function do_embedding(parsed_args)
     println("Max degree = $(d_max), Max path = $(path_length)")
 
     # Adjacency matrices for original graph and for BFS
-    adj_mat_original    = nx.to_scipy_sparse_matrix(G, 0:n-1)
-    adj_mat_bfs         = nx.to_scipy_sparse_matrix(G_BFS, 0:n_bfs-1)
+    adj_mat_original    = nx.to_scipy_sparse_array(G, 0:n-1)
+    adj_mat_bfs         = nx.to_scipy_sparse_array(G_BFS, 0:n_bfs-1)
 
     # Perform the embedding
     println("\nPerforming the embedding")

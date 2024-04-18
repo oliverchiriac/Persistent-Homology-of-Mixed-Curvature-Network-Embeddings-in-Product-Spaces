@@ -43,7 +43,7 @@ def map_via_edges(G, i, h_rec):
     n_correct   = 0
     j = 0
     n = h_rec.size
-    n_idx = np.array(list(neighbors), dtype=np.int)
+    n_idx = np.array(list(neighbors), dtype=np.int64)
     sds   = sorted_dist[1:(m+1)]
     # print(f"{n_idx} {type(n_idx)} {n_idx.dtype}")
     # print(f"i={i} neighbors={neighbors} {sds} {h_rec[n_idx]} {h_rec[sds]}")

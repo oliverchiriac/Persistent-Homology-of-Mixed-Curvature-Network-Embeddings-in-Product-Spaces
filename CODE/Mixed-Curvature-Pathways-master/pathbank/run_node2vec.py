@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 from torch_geometric.nn import Node2Vec
 from torch_geometric.utils.convert import (
-    from_scipy_sparse_matrix
+    from_scipy_sparse_array
 )
 
 def train(model, optimizer, loader, device='mps'):
@@ -31,7 +31,7 @@ def main():
         G = nx.read_edgelist(fpath)
         adj = nx.adjacency_matrix(G)
         # adj = dense_to_sparse(adj)
-        edge_index, attr = from_scipy_sparse_matrix(adj)
+        edge_index, attr = from_scipy_sparse_array(adj)
         model = Node2Vec(
             edge_index,
             embedding_dim=100,

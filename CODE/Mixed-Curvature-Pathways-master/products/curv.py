@@ -117,7 +117,7 @@ def sample_K(m1, m2, n1=5, n2=5, n_samples=100):
 def estimate(dataset='data/edges/smalltree.edges', n_samples=100000):
     G = load_graph.load_graph(dataset)
     n = G.order()
-    GM = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+    GM = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
 
     num_workers = 16
     D   = gh.build_distance(G, 1.0, num_workers) # load the whole matrix

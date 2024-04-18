@@ -3,7 +3,7 @@ import argparse
 import os, sys
 import networkx as nx
 import random
-import wandb
+# import wandb
 
 import torch
 from torch import nn
@@ -69,7 +69,7 @@ def unwrap(x):
 class GraphRowSubSampler(torch.utils.data.Dataset):
     def __init__(self, G, scale, subsample, weight_fn, Z=None):
         super(GraphRowSubSampler, self).__init__()
-        self.graph     = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+        self.graph     = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
         self.n         = G.order()
         self.scale     = scale
         self.subsample = subsample if subsample > 0 else self.n-1
@@ -99,7 +99,7 @@ class GraphRowSubSampler(torch.utils.data.Dataset):
             # add in all the edges
             cur = 0
             self.idx_cache[index,:,0] = index
-            neighbors = scipy.sparse.find(self.graph[index,:])[1]
+            neighbors = scipy.sparse.find(self.graph[[index],:])[1]
             for e in neighbors:
                 self.idx_cache[index,cur,1] = int(e)
                 self.val_cache[index,cur] = self.scale*h[e]
@@ -136,7 +136,7 @@ class GraphRowSubSampler(torch.utils.data.Dataset):
 
 class GraphRowSampler(torch.utils.data.Dataset):
     def __init__(self, G, scale, use_cache=True):
-        self.graph = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+        self.graph = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
         self.n     = G.order()
         self.scale = scale
         self.cache = dict() if use_cache else None
@@ -249,7 +249,7 @@ def major_stats(G, n, m, lazy_generation, Z,z, fig, ax, writer, visualize, subsa
         logging.info("Compare matrices built")
         mc, me, avg_dist, nan_elements = dis.distortion(H, Hrec, n, num_workers)
         wc_dist = me*mc
-        mapscore = dis.map_score(scipy.sparse.csr_matrix.todense(G).A, Hrec, n, num_workers)
+        mapscore = dis.map_score(scipy.sparse.csr_matrix.todense(G), Hrec, n, num_workers)
 
     if visualize:
         num_spheres = np.minimum(len(m.S), 5)
@@ -295,6 +295,10 @@ def learn(dataset, dim, hyp, edim, euc, sdim, sph, scale, riemann, learning_rate
         if not os.path.exists('log'):
             os.makedirs('log')
         log_name = f"log/{dataset.split('/')[1]}.H{dim}-{hyp}.E{edim}-{euc}.S{sdim}-{sph}.lr{learning_rate}.log"
+    if model_save_file is None:
+        if not os.path.exists('embeddings'):
+            os.makedirs('embeddings')
+        model_save_file = f"embeddings/{dataset.replace('/','_')}.H{dim}-{hyp}.E{edim}-{euc}.S{sdim}-{sph}.lr{learning_rate}.pth"
     formatter = logging.Formatter('%(asctime)s %(message)s')
     logging.basicConfig(filename=log_name,
                         level=logging.INFO,
@@ -310,7 +314,12 @@ def learn(dataset, dim, hyp, edim, euc, sdim, sph, scale, riemann, learning_rate
     logging.info(f"Commandline {sys.argv}")
     if model_save_file is None: logging.warn("No Model Save selected!")
     G  = load_graph.load_graph(dataset)
-    GM = nx.to_scipy_sparse_matrix(G, nodelist=list(range(G.order())))
+    cycles = list(nx.cycle_basis(G))
+    if not cycles:
+        print("The graph is cyclic.")
+    else:
+        print("The graph is acyclic.")
+    GM = nx.to_scipy_sparse_array(G, nodelist=list(range(G.order())))
 
     # grab scale if warm starting:
     if warm_start:
@@ -329,6 +338,10 @@ def learn(dataset, dim, hyp, edim, euc, sdim, sph, scale, riemann, learning_rate
         def weight_fn(d):
             return 1.0
     Z, z = build_dataset(G, lazy_generation, sample, subsample, scale, batch_size, weight_fn, num_workers)
+    print('Zeros:', np.any(Z == 0), np.any(z == 0))
+    print('inf:', np.any(Z == np.inf), np.any(z == np.inf))
+
+    # exit()
 
     if model_load_file is not None:
         logging.info(f"Loading {model_load_file}...")

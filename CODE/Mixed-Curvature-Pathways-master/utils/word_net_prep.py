@@ -68,6 +68,6 @@ def load_big_component():
 
 if __name__ == '__main__':
     n, G, G_closure = load_big_component()
-    # edges = nx.from_scipy_sparse_matrix(G)
+    # edges = nx.from_scipy_sparse_array(G)
     nx.write_edgelist(G, f"data/edges/wordnet2.edges", data=False)
     nx.write_edgelist(G_closure, f"data/edges/wordnet_closure.edges", data=False)

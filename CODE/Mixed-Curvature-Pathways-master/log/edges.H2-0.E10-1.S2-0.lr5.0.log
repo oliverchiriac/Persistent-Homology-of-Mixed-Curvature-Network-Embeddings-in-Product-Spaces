@@ -1,0 +1,129 @@
+2024-04-02T19:48:27 Logging to log/edges.H2-0.E10-1.S2-0.lr5.0.log
+2024-04-02T19:48:27 Commandline ['C:\\work_oli\\Mixed-Curvature-Pathways-master\\pytorch\\pytorch_hyperbolic.py', '--dataset', 'data/edges/network datasets/power.gml.edges', '--riemann', '--batch-size', '64', '-l', '5.0', '--epochs', '100', '--checkpoint-freq', '10', '--subsample', '16', '--hyp', '0', '--euc', '1', '--edim', '10']
+2024-04-02 19:48:27,980 Commandline ['C:\\work_oli\\Mixed-Curvature-Pathways-master\\pytorch\\pytorch_hyperbolic.py', '--dataset', 'data/edges/network datasets/power.gml.edges', '--riemann', '--batch-size', '64', '-l', '5.0', '--epochs', '100', '--checkpoint-freq', '10', '--subsample', '16', '--hyp', '0', '--euc', '1', '--edim', '10']
+2024-04-02T19:48:27 No Model Save selected!
+2024-04-02 19:48:27,981 No Model Save selected!
+2024-04-02T19:48:28 Loaded Graph data/edges/network datasets/power.gml.edges with 4941 nodes scale=1.0
+2024-04-02 19:48:28,044 Loaded Graph data/edges/network datasets/power.gml.edges with 4941 nodes scale=1.0
+2024-04-02T19:48:28 Building dataset
+2024-04-02 19:48:28,044 Building dataset
+2024-04-02T19:48:35 	Final Matrix (4941, 4941)
+2024-04-02 19:48:35,032 	Final Matrix (4941, 4941)
+2024-04-02T19:48:35 Built distance matrix with 1.0 factor
+2024-04-02 19:48:35,281 Built distance matrix with 1.0 factor
+2024-04-02T19:48:35 Subsample: 4941 points with scale 1.0 subsample=16
+2024-04-02 19:48:35,327 Subsample: 4941 points with scale 1.0 subsample=16
+2024-04-02T19:48:39 Built data loader
+2024-04-02 19:48:39,237 Built data loader
+2024-04-02T19:48:39 Creating a fresh model warm_start?=False
+2024-04-02 19:48:39,238 Creating a fresh model warm_start?=False
+2024-04-02T19:48:39 	 Warmstarting? False None 4941
+2024-04-02 19:48:39,238 	 Warmstarting? False None 4941
+2024-04-02T19:48:39 Embedding() torch.Size([4941, 10])
+2024-04-02 19:48:39,242 Embedding() torch.Size([4941, 10])
+2024-04-02T19:48:39 relative No Rescale
+2024-04-02 19:48:39,243 relative No Rescale
+2024-04-02T19:48:39 Constructed model with dim=2 and epochs=0 isnan=False
+2024-04-02 19:48:39,244 Constructed model with dim=2 and epochs=0 isnan=False
+2024-04-02T19:48:39 SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 1
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 2
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 3
+    dampening: 0
+    initial_lr: 0.0005
+    lr: 0.005
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+)
+2024-04-02 19:48:39,245 SGD (
+Parameter Group 0
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 1
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 2
+    dampening: 0
+    initial_lr: 0.5
+    lr: 5.0
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+
+Parameter Group 3
+    dampening: 0
+    initial_lr: 0.0005
+    lr: 0.005
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0
+)
+2024-04-02T19:48:39 *** Initial Checkpoint. Computing Stats
+2024-04-02 19:48:39,245 *** Initial Checkpoint. Computing Stats
+2024-04-02T19:48:47 Compare matrices built
+2024-04-02 19:48:47,007 Compare matrices built
+2024-04-02T19:49:09 Distortion avg=0.9997254977892194 wc=392.77643703551416 me=0.008722916172277774 mc=45028.11092966749 nan_elements=0.0
+2024-04-02 19:49:09,234 Distortion avg=0.9997254977892194 wc=392.77643703551416 me=0.008722916172277774 mc=45028.11092966749 nan_elements=0.0
+2024-04-02T19:49:09 MAP = 0.002387822535887719
+2024-04-02 19:49:09,234 MAP = 0.002387822535887719
+2024-04-02T19:49:09 scale=[array([1.])]
+2024-04-02 19:49:09,235 scale=[array([1.])]
+2024-04-02T19:49:09 *** End Initial Checkpoint
+
+2024-04-02 19:49:09,247 *** End Initial Checkpoint
+
+2024-04-02T19:49:11 1 loss=0.8556842096330189
+2024-04-02 19:49:11,183 1 loss=0.8556842096330189
+2024-04-02T19:49:12 2 loss=0.7595651962437306
+2024-04-02 19:49:12,676 2 loss=0.7595651962437306
+2024-04-02T19:49:14 3 loss=0.748518312308212
+2024-04-02 19:49:14,050 3 loss=0.748518312308212
+2024-04-02T19:49:15 4 loss=0.7415389814604972
+2024-04-02 19:49:15,398 4 loss=0.7415389814604972
+2024-04-02T19:49:16 5 loss=0.7349430066444372
+2024-04-02 19:49:16,919 5 loss=0.7349430066444372
+2024-04-02T19:49:18 6 loss=0.728053010554481
+2024-04-02 19:49:18,445 6 loss=0.728053010554481
+2024-04-02T19:49:19 7 loss=0.7205520743394839
+2024-04-02 19:49:19,923 7 loss=0.7205520743394839

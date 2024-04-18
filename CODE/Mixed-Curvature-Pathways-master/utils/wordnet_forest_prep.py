@@ -88,7 +88,7 @@ def load_connected_components():
 
 if __name__ == '__main__':
     ID_dict, wordID_dict, d, n, G = load_connected_components()
-    edges = nx.from_scipy_sparse_matrix(G)
+    edges = nx.from_scipy_sparse_array(G)
     print("writing to the file")
     nx.write_weighted_edgelist(edges, "embeddings/wordnet_all.edges")
     json.dump(ID_dict,open("embeddings/IDstoWords.txt","w"))
