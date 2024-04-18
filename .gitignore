@@ -1,7 +1,7 @@
-data
+# data
 *.tsv
-*.txt
-*.csv
+# *.txt
+# *.csv
 *.owl
 *.pkl
 wandb
@@ -15,7 +15,7 @@ graph_dists
 .ipynb_checkpoints
 
 # VSCode
-.vscode/
+# .vscode/
 
 # Local data and notebooks
 products/data/wikidata_dicts/*
