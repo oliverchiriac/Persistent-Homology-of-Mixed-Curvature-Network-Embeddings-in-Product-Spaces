@@ -5,7 +5,7 @@ The following  zip files contain the logs that were generated:
 -	RESULTS-PPI.zip
 
 ## Stats files
-To obtain the stats unzip the files above and run **CODE/Mixed-Curvature-Pathways-master/oc/pull_stats.py**:
+To obtain the stats, unzip the files above and run **CODE/Mixed-Curvature-Pathways-master/oc/pull_stats.py**:
 -	BITCOIN-ALPHA-stats.csv
 -	COLLEGE-stats.csv
 -	PPI-stats.csv
